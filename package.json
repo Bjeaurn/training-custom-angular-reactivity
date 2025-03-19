@@ -1,0 +1,15 @@
+{
+    "name": "angular-reactivity",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "reveal-md ./presentation.md",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "reveal-md": "^5.5.2"
+    }
+}
