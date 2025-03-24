@@ -14,3 +14,270 @@ title: "Angular Reactivity+ (for Kadaster)"
 - RxJS interop
 - Angular specific examples
 
+---
+
+<div style="">
+  <img src="./assets/bjorn.jpg" width="100" style="border-radius:100%; display: inline-flex;">
+  <h1 style="font-size: 0.9em;">Bjorn Schijff</h1>
+  <small style="display: inline-flex;">Sr. Frontend Engineer / Architect</small>
+  <div>
+    <img src="./assets/codestar.svg" height="30" style="border: 0; background-color: transparent;">
+  </div>
+  <small>@Bjeaurn</small>
+  <br />
+  <small>bjorn.schijff@soprasteria.com</small>
+</div>
+
+Note: Introduction, but also: Who are you? Introduce yourself in 30 seconds/1m?
+
+---
+
+What is Reactivity?
+
+Note: What is reactivity? What is reactive programming? [DISCUSS]
+
+----
+
+> Reactive programming is a **declarative** programming paradigm concerned with **data streams** and the **propagation of change**.
+
+<small>https://en.wikipedia.org/wiki/Reactive_programming</small>
+
+Note: Declarative, data streams, propagation of change.
+
+----
+
+```js
+var count = 0;
+
+function render() {
+    document.getElementById("counter").innerHTML = count;
+}
+
+document.getElementById("counterPlus")
+        .addEventListener('click', () => {
+    count = count + 1;
+    render(); // <--- This here...
+})
+```
+ 
+
+```html
+<div>
+    <span class="counter"></span>
+    
+    <button class="counterPlus">+</button>
+</div>
+```
+
+Note: Regular variable being updated on click. This is not reactive. (Imperative!). Angular does this for you.
+
+---
+
+```ts
+var count = signal(0);
+
+document.getElementById("counter")
+        .addEventListener('click', () => {
+            count.update(value => value + 1);
+        })
+
+// Pseudo-code
+computed(() => {
+    document.getElementyById("counter").innerHTML = count();
+});
+```
+
+Note: Pseudo-code for a more Reactive example. Splitting the render logic away from the "business" logic of updating the count. This probably won't work or be different depending on your Signal API.
+
+---
+
+Declarative
+
+Data Streams
+
+Propagation of Changes
+
+----
+
+**Declarative**
+
+```js
+// Imperative - This is how NOT to do it.
+let count = 0;
+
+function render() {
+    document.getElementById("counter").innerHTML = count;
+}
+
+document.getElementById("counterPlus")
+        .addEventListener('click', () => {
+    count = count + 1;
+    render(); // <--- This here...
+})
+
+document.getElementById("counterMin")
+        .addEventListener('click', () => {
+            count = count - 1;
+            render() // <-- This again. Oh no, I forgot it?!
+        })
+
+// How do I see how the count is influenced over time? 
+// By different parts of the application?
+```
+ 
+Note: Imagine we add another button that influences how the counter changes. The minus example. Now we have two functions, they both influence the same state and have to call the same functions.
+
+----
+
+**Declarative**
+
+```ts
+// Angular 17.1+
+class ListComponent {
+  list = input([]);
+  emptyHeading = input('');
+
+  count = computed(() => this.list().length);
+
+  heading = computed(() => {
+    if (this.count() > 0) {
+      const noun = this.count() > 1 ? 'items' : 'item';
+      return this.count() + ' ' + noun;
+    }
+    return this.emptyHeading();
+  });
+}
+```
+
+Note: A declarative example. We write the "recipe" and every definition has its own easy to follow set of rules.
+
+----
+
+**Data Streams**
+
+You could consider a Signal to be a current state of values that change over time (as a stream).
+
+```ts
+count = signal(0)
+
+// User clicks a button
+count.update(value => value + 1)
+// Count is now 1.
+
+// User clicks again (count: 2)
+// User may wait for a bit... (count: 2)
+// User clicks *again* (count: 3)
+```
+
+Note: This is a basic visualisation on how a value might change over time, representing a stream of data. We'll come back to this in the RxJS part.
+
+----
+
+**Propagation of Change**
+
+When a Signal changes, it notifies all interested. You don't have to manually keep track or update the state of another variable. This keeps the code clean and makes the flow of data more "Push" instead of "Pull".
+
+---
+
+### Any modern framework takes care of this problem for you. 
+
+Note: So you can focus on the business logic, not the two-way binding. But the same benefits stay!
+
+----
+
+### Angular example
+
+```ts
+@Component({
+    ...
+    template: `<div>{{ counter() }}</div>
+    <button (click)="addCount()">+</button>`
+}) export class Component {
+    counter = signal(0);
+
+    addCount() {
+        counter.update(count => count + 1);
+    }
+}
+```
+
+Note: Angular in this example, takes care of subscribing to your counter signal and binding your click to the function. Because of the two-way binding also takes care of updating the value.
+
+----
+
+### React example
+
+```tsx
+const Component = () => {
+  const [counter, setCounter] = useState(0);
+  return (
+    <>
+      <div>{counter}</div>
+      <button onClick={() => setCounter(counter + 1)}>
+          +
+        </button>
+    </>
+  );
+};
+```
+
+Note: React uses hooks to connect the state value updates to the UI and update it automatically when the state changes.
+
+---
+
+## Pros & Cons
+
+Of Signals
+
+----
+
+## Pros
+
+- Always up to date state of a value
+- No need to notify or be aware of other parts of the application
+- More declarative approach is possible
+
+----
+
+## Cons
+
+- No real "value over time", only a current state.
+- Slightly more complicated API for changing values.
+- Not every Signal is the same; some are writeable, some are only calculated.
+
+Note: Point 3: WriteableSignal vs. ComputedSignal.
+
+---
+
+### But what does a Signal do then?
+
+- Holds a (initial) state value<!-- .element: class="fragment" -->
+- Receives and stores state changes<!-- .element: class="fragment" -->
+- Returns current state on demand<!-- .element: class="fragment" -->
+- Informs all listeners on state changes<!-- .element: class="fragment" -->
+
+---
+
+# Angular's Signals
+
+* Available since v16 (experimental)<!-- .element: class="fragment" -->
+* Stable since v17<!-- .element: class="fragment" -->
+* Signal input/output since v19<!-- .element: class="fragment" -->
+* v20 coming in May!<!-- .element: class="fragment" -->
+
+Note: What version are you on? How is upgrading going?
+
+----
+
+https://www.angular.courses/caniuse
+
+https://angular.dev/reference/releases#actively-supported-versions
+
+---
+
+## Comparison with existing solutions
+
+# RxJS<!-- .element: class="fragment" -->
+
+----
+
