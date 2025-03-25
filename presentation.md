@@ -91,6 +91,14 @@ Note: Pseudo-code for a more Reactive example. Splitting the render logic away f
 
 ---
 
+## Imperative example for comparison
+
+Note: "reactive-werken-in-frontend.md", depending on how quickly or well the discussions are going: Maybe use 5-15 minutes to go through the examples.
+
+---
+
+# Reactive
+
 Declarative
 
 Data Streams
@@ -246,7 +254,7 @@ Of Signals
 - Not every Signal is the same; some are writeable, some are only calculated.
 
 Note: Point 3: WriteableSignal vs. ComputedSignal.
-
+ 
 ---
 
 ### But what does a Signal do then?
@@ -281,3 +289,44 @@ https://angular.dev/reference/releases#actively-supported-versions
 
 ----
 
+# RxJS
+
+- Implementation of the Observable pattern in Javascript
+- Used heavily by `Angular`
+- Lots of adoption in libraries like
+  - `Redux-observable`
+  - `VueRx`
+- Java/Scala also have their implementation.
+
+#### 🤩 So plenty of stuff to have fun with! 🤩 <!-- .element: class="fragment" -->
+
+---
+
+# The RxJS Contract
+
+---
+
+### Wait, what's a contract?
+
+- A set of rules agreed upon <!-- .element: class="fragment" -->
+- Using the same language throughout <!-- .element: class="fragment" -->
+- Ensures we're all using the same things for the same reasons. <!-- .element: class="fragment" -->
+
+---
+
+### So, the RxJS Contract
+
+- Observable<!-- .element: class="fragment" -->
+- Subscribers<!-- .element: class="fragment" -->
+- Subscription<!-- .element: class="fragment" -->
+- Operators<!-- .element: class="fragment" -->
+- Subject<!-- .element: class="fragment" -->
+
+Note: Check if we know all of them, ask around.
+
+---
+
+// TODO Vervangen voor subject vs. signal voorbeelden?
+
+// Daarna door naar meer inhoudelijke RxJS voorbeelden?
+// Wel baseren op RxJS 101...
