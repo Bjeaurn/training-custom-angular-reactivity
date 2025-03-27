@@ -289,6 +289,14 @@ https://angular.dev/reference/releases#actively-supported-versions
 
 ----
 
+Signals: Synchronous, current state.
+
+RxJS: Asynchronous streams, events.
+
+Note: If you're using RxJS just to keep track of a current state, switching that over to a Signal might be a good idea!
+
+---
+
 # RxJS
 
 - Implementation of the Observable pattern in Javascript
@@ -304,7 +312,7 @@ https://angular.dev/reference/releases#actively-supported-versions
 
 # The RxJS Contract
 
----
+----
 
 ### Wait, what's a contract?
 
@@ -312,7 +320,7 @@ https://angular.dev/reference/releases#actively-supported-versions
 - Using the same language throughout <!-- .element: class="fragment" -->
 - Ensures we're all using the same things for the same reasons. <!-- .element: class="fragment" -->
 
----
+----
 
 ### So, the RxJS Contract
 
@@ -330,3 +338,78 @@ Note: Check if we know all of them, ask around.
 
 // Daarna door naar meer inhoudelijke RxJS voorbeelden?
 // Wel baseren op RxJS 101...
+
+---
+
+# Common mistakes
+
+- By André Staltz
+
+----
+
+- Using Subjects too much. Use Observable.create!<!-- .element: class="fragment" -->
+- Using Observable.create too much. Use Creation operators<!-- .element: class="fragment" -->
+- Subscribing too much and unsubscribing too much<!-- .element: class="fragment" -->
+- Subject.next inside subscribe<!-- .element: class="fragment" -->
+- Subscribe inside subscribe<!-- .element: class="fragment" -->
+
+----
+
+// TODO 
+Expand with more Angular specific examples, especially in comparison with modern Signal solutions?
+
+---
+
+## Cold versus Hot
+
+- A cold ❄️ Observable does not emit events when there are no subscribers.<!-- .element: class="fragment" -->
+- A hot 🔥 Observable does emit events, even if there's no subscriber.<!-- .element: class="fragment" -->
+- A cold ❄️ Observable creates a new stream for each subscriber.<!-- .element: class="fragment" -->
+- A hot 🔥 Observable adds a new subscriber to the existing Observable.<!-- .element: class="fragment" -->
+
+Note: Check if the class knows the difference before explaining?
+
+----
+
+```ts
+const obs = interval(1000).pipe(
+  // share(), <--- This makes it hot! 🔥
+  // Share secretly is a `multicast()` with a `refCount()`
+  take(5)
+);
+
+obs.subscribe((a) => console.log("A", a));
+
+setTimeout(() => {
+  obs.subscribe((b) => console.log("B", b));
+}, 1001); // We start it after the first emit.
+```
+
+```js
+// 🔥 Hot: A0, A1, B1, A2, B2, etc.
+// ❄️ Cold: A0, A1, B0, A2, B1, A3, B2, etc.
+```
+
+---
+
+Final Exercise
+
+---
+
+# Recap
+
+// Todo write recap.
+
+---
+
+<div style="">
+  <img src="./assets/bjorn.jpg" width="100" style="border-radius:100%; display: inline-flex;">
+  <h1 style="font-size: 0.9em;">Bjorn Schijff</h1>
+  <small style="display: inline-flex;">Sr. Frontend Engineer / Architect</small>
+  <div>
+    <img src="./assets/codestar.svg" height="30" style="border: 0; background-color: transparent;">
+  </div>
+  <small>@Bjeaurn</small>
+  <br />
+  <small>bjorn.schijff@soprasteria.com</small>
+</div>
