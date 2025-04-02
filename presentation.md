@@ -290,7 +290,7 @@ https://angular.dev/reference/releases#actively-supported-versions
 
 Exercises 1-3
 
-Note: Exercises 1 to 3. 10-15m?
+Note: Exercises 1 to 3. Get some coffe, take 10-15m? Then we'll discuss and go over the exercises.
 
 ---
 
@@ -315,9 +315,8 @@ Note: If you're using RxJS just to keep track of a current state, switching that
 - Lots of adoption in libraries like
   - `Redux-observable`
   - `VueRx`
-- Java/Scala also have their implementation.
-
-#### 🤩 So plenty of stuff to have fun with! 🤩 <!-- .element: class="fragment" -->
+  - `NgRx`
+- Java/Scala, C#, also have their implementation
 
 ---
 
@@ -345,8 +344,136 @@ Note: Check if we know all of them, ask around.
 
 ---
 
-// TODO Vervangen voor subject vs. signal voorbeelden?
 
+
+#### Observable
+
+- Datasource\* <!-- .element: class="small" -->
+- You can `subscribe` to its contents, much like a newsletter.
+- Unlike a newsletter, it won't send anything until at least someone has a `subscription`.
+- You can use `operators` on it, to get the parts you are interested in.
+
+---
+
+#### Subscribers
+
+```js
+const obs = from([1, 2, 3]);
+
+obs.subscribe({
+  next: (next) => {
+    console.log(next);
+  },
+  error: () => {},
+  complete: () => {
+    console.log("I'm done!");
+  },
+});
+
+// What does this do?
+```
+
+- A subscriber activates an Observable. <!-- .element: class="fragment" -->
+- Within a subscriber you handle every value, an error, or when it's done. <!-- .element: class="fragment" -->
+- Without error handling, the subscription will end immediately <!-- .element: class="fragment" -->
+
+---
+
+#### Subscription
+
+```js
+const obs = from([1, 2, 3]).pipe(delay(1));
+
+const subscription = obs.subscribe({
+  next: (next) => {
+    console.log(next);
+  },
+  error: () => {},
+  complete: () => {
+    console.log("I'm done!");
+  },
+});
+
+subscription.unsubscribe();
+
+// What do you think this does?
+```
+
+```js
+// and what happens when we remove the delay()?
+```
+
+<!-- .element: class="fragment" -->
+
+- A subscription let's you unsubscribe from the ~~newsletter~~ `Observable`.
+
+---
+
+#### Operators
+
+- Operators are small operations you perform on top of your Observable. <!-- .element: class="fragment" -->
+- You can use multiple operators to transform the data to your liking. <!-- .element: class="fragment" -->
+- This is done using the pipe() method, introduced in RxJS v6 <!-- .element: class="fragment" -->
+- There's multiple categories of operators.<br />More on that later! 🔜<!-- .element: class="fragment" -->
+
+---
+
+#### Creation operators
+
+- Generates an Observable based on your input
+  `from() of()`<br /> <!-- .element: class="fragment" -->
+  `interval() EMPTY`<br /> <!-- .element: class="fragment" -->
+  `merge() concat()`<br /> <!-- .element: class="fragment" -->
+  `zip()`<br /> <!-- .element: class="fragment" -->
+  - and more! (On that later!)<!-- .element: class="fragment" -->
+
+Note: from() is the catchall for a lot of different variables, including Promises. fromPromise has been deprecated a while ago. Corneel en Tobias doen hier leuke analogie??
+
+---
+
+```js
+const obs = from([1, 2, 3]).pipe(
+  map((x) => x * 2),
+  filter((x) => x < 4)
+);
+
+obs.subscribe({
+  next: (next) => {
+    console.log(next);
+  }, // 2, 4, I'm done!
+  error: () => {},
+  complete: () => {
+    console.log("I'm done!");
+  },
+});
+```
+
+<!-- .element: class="fragment" -->
+
+```
+// What happens when we switch the map() and filter() around?
+```
+
+<!-- .element: class="fragment" -->
+
+---
+
+#### But wait, there's more! 🙀
+
+- Subject <!-- .element: class="fragment" -->
+  - BehaviorSubject
+  - ReplaySubject
+- Observers <!-- .element: class="fragment" -->
+
+Note: We might get into this, as they compare nicely to what Signals make very easy for us.
+
+---
+
+# Exercises
+
+Exercises 4-6
+
+Note: Short break, 10-15m? // TODO Vervangen voor subject vs. signal voorbeelden?
 // Daarna door naar meer inhoudelijke RxJS voorbeelden?
 // Wel baseren op RxJS 101...
 
