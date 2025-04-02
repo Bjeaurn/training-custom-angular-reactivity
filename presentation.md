@@ -105,6 +105,8 @@ Data Streams
 
 Propagation of Changes
 
+Note: So after the example and discussion, quick recap; what is reactive programming.
+
 ----
 
 **Declarative**
@@ -189,7 +191,7 @@ When a Signal changes, it notifies all interested. You don't have to manually ke
 
 ### Any modern framework takes care of this problem for you. 
 
-Note: So you can focus on the business logic, not the two-way binding. But the same benefits stay!
+Note: So you can focus on the business logic, not the two-way binding. But the same benefits stay! And because it's Framework native, they can integrate it with their change logic etc., so it's win-win!
 
 ----
 
@@ -271,6 +273,7 @@ Note: Point 3: WriteableSignal vs. ComputedSignal.
 * Available since v16 (experimental)<!-- .element: class="fragment" -->
 * Stable since v17<!-- .element: class="fragment" -->
 * Signal input/output since v19<!-- .element: class="fragment" -->
+* LinkedSignal since v19<!-- .element: class="fragment" -->
 * v20 coming in May!<!-- .element: class="fragment" -->
 
 Note: What version are you on? How is upgrading going?
@@ -280,6 +283,14 @@ Note: What version are you on? How is upgrading going?
 https://www.angular.courses/caniuse
 
 https://angular.dev/reference/releases#actively-supported-versions
+
+---
+
+# Exercises
+
+Exercises 1-3
+
+Note: Exercises 1 to 3. 10-15m?
 
 ---
 

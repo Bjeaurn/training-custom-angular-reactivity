@@ -1,1 +1,0 @@
-[Angular solution exercise 3](https://stackblitz.com/edit/stackblitz-starters-xdhscf?file=src%2Fmain.ts)

@@ -1,15 +1,6 @@
-# Exercise 1 - Write your own Signal
 
-Starter link, please **fork** this:
-https://stackblitz.com/edit/typescript-qzcihp?file=index.ts
+Please **fork** the next URL:
 
-## Write your own Signal
+https://stackblitz.com/edit/stackblitz-starters-p2s4iw?file=src%2Fmain.ts
 
-Recommended steps:
-
-1. Wrap a value
-2. Be able to unwrap and retrieve the value
-3. Be able to set and/or update the value
-4. Add and keep track of (new) listeners
-5. 
-Bonus step: computed()
+App contains an imperative counter with some additional data to show based on the counter. Rewrite it using Angular's signals.
