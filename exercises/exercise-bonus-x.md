@@ -3,7 +3,7 @@
 ## Use Observables instead of Signals to make life easier
 
 ```ts
-const stat4e = signal({
+const state = signal({
   loading: false,
   data: null,
   error: null,

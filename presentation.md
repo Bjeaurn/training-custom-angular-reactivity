@@ -528,7 +528,9 @@ setTimeout(() => {
 
 ---
 
-Final Exercise
+# Exercises 7-8
+
+Note: 10 minutes? Depends on the rest of the exercises and how much time has passed?
 
 ---
 
