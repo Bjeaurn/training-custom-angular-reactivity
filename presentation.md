@@ -342,9 +342,7 @@ Note: If you're using RxJS just to keep track of a current state, switching that
 
 Note: Check if we know all of them, ask around.
 
----
-
-
+----
 
 #### Observable
 
@@ -353,7 +351,7 @@ Note: Check if we know all of them, ask around.
 - Unlike a newsletter, it won't send anything until at least someone has a `subscription`.
 - You can use `operators` on it, to get the parts you are interested in.
 
----
+----
 
 #### Subscribers
 
@@ -377,7 +375,7 @@ obs.subscribe({
 - Within a subscriber you handle every value, an error, or when it's done. <!-- .element: class="fragment" -->
 - Without error handling, the subscription will end immediately <!-- .element: class="fragment" -->
 
----
+----
 
 #### Subscription
 
@@ -407,7 +405,7 @@ subscription.unsubscribe();
 
 - A subscription let's you unsubscribe from the ~~newsletter~~ `Observable`.
 
----
+----
 
 #### Operators
 
@@ -416,7 +414,7 @@ subscription.unsubscribe();
 - This is done using the pipe() method, introduced in RxJS v6 <!-- .element: class="fragment" -->
 - There's multiple categories of operators.<br />More on that later! 🔜<!-- .element: class="fragment" -->
 
----
+----
 
 #### Creation operators
 
@@ -429,7 +427,7 @@ subscription.unsubscribe();
 
 Note: from() is the catchall for a lot of different variables, including Promises. fromPromise has been deprecated a while ago. Corneel en Tobias doen hier leuke analogie??
 
----
+----
 
 ```js
 const obs = from([1, 2, 3]).pipe(
@@ -456,7 +454,7 @@ obs.subscribe({
 
 <!-- .element: class="fragment" -->
 
----
+----
 
 #### But wait, there's more! 🙀
 
