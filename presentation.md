@@ -456,6 +456,71 @@ obs.subscribe({
 
 ----
 
+- Transformation like `map()`
+- Filtering like `filter()`
+- Utility like `tap()`
+- Error handling like `catchError()`
+- Combination like `merge()`
+- Flattening like `switchMap()`
+- Multicasting like `share()`
+- And plenty of combined operators, like `mergeMap()`
+
+----
+
+### `map()`
+
+Transform the value to another value
+
+```ts
+const obs = from([1, 2, 3]).pipe(
+  map((x) => x * 2) // multiplies each item by 2
+);
+
+// outputs: 2, 4, 6
+```
+
+----
+
+### `filter()`
+
+Filter out values you're not interested in
+
+```ts
+const obs = from([1, 2, 3]).pipe(
+  filter((x) => x > 2) // only use values that are higher than 2
+);
+
+// outputs: 3
+```
+
+----
+
+### `catchError()`
+
+- By default, the Observable will finish on errors
+- catchError operator will help handle errors
+
+```ts
+const obs = from([1, 2, 3]).pipe(
+  map( ... ),
+  catchError((err, caught) => {
+    // `catchError` takes an error Observable, handles
+    // the error and either breaks the stream or returns
+    // a new one that functions.
+    // This operator basically works like a `switchMap`
+    return ...
+  })
+);
+```
+
+----
+
+- There are about 120 operators.
+- All available on https://github.com/ReactiveX/rxjs/tree/master/src
+- It's a bit scary at first, but don't be afraid to just go there and lookup what an operator does.
+
+----
+
 #### But wait, there's more! 🙀
 
 - Subject <!-- .element: class="fragment" -->
@@ -471,9 +536,7 @@ Note: We might get into this, as they compare nicely to what Signals make very e
 
 Exercises 4-6
 
-Note: Short break, 10-15m? // TODO Vervangen voor subject vs. signal voorbeelden?
-// Daarna door naar meer inhoudelijke RxJS voorbeelden?
-// Wel baseren op RxJS 101...
+Note: Short break, 10-15m?
 
 ---
 
@@ -489,10 +552,96 @@ Note: Short break, 10-15m? // TODO Vervangen voor subject vs. signal voorbeelden
 - Subject.next inside subscribe<!-- .element: class="fragment" -->
 - Subscribe inside subscribe<!-- .element: class="fragment" -->
 
+Note: How do we handle subscribe in subscribes? SwitchMap, or exhaustMap, or any other maps/merges/zips that help you combine streams and reuse value A in stream B.
+
 ----
 
-// TODO 
-Expand with more Angular specific examples, especially in comparison with modern Signal solutions?
+```ts
+@Component({})
+export class Component {
+  @Input() id!: string
+  data: DataType | undefined
+
+  ngOnInit() {
+    this.sub = this.dataService.getDataById(this.id).subscribe(
+      data => this.data = data
+    )
+  }
+
+  ngOnDestroy() {
+    this.sub.complete()
+    this.sub.unsubscribe()
+  }
+}
+```
+
+Note: Explain to me what's wrong here? Why is it wrong?
+
+----
+
+```ts
+@Component({})
+export class Component {
+  @Input() id!: string
+  data: DataType | undefined // This is ugly!
+
+  ngOnInit() {
+     // Is this Observable "hot"? Does it emit more then one value?
+     // Should it be refetching data when the ID changes?
+    this.sub = this.dataService.getDataById(this.id).subscribe( 
+      data => this.data = data // Why assign it here if we're not doing anything with it?
+    ) // Why manage the subscription manually?
+  }
+
+  ngOnDestroy() {
+    this.sub.complete() // What if you forget to do this?
+    this.sub.unsubscribe() // Or worse, if the Observable is hot and you forget to do this!?
+  }
+}
+```
+
+Note: Memory leaks, imperative programming, not using the Reactive paradigm, easy to forget, hard to understand.
+
+----
+
+```ts
+@Component({})
+export class Component {
+  id = input.required<string>() // Modern, signal based, but the @Input() isn't bad in itself.
+  data$: Observable<DataType> = this.dataService.getDataById(this.id())
+          .pipe(
+            takeUntilDestroyed() // Modern Angular, from @angular/core/rxjs-interop
+          )
+
+  // In the HTML use it as data$ | async. Let the framework handle your subscription.
+  // Can't forget to manage it anymore. Easier to reason and understand.
+  // Sets up the reactive stream, you can have other streams base of this data$ if need be!
+}
+```
+
+----
+
+```html
+@let data = data$ | async
+@if(data) {
+  <div> {{ data | json }}</div>
+}
+<!-- Modern Angular using modern control flow! -->
+```
+
+----
+
+```ts
+const userId = input.required<string>()
+const userResource = resource({
+ // Define an async loader that retrieves data.  
+ // The resource calls this function every time the `request` value changes
+  request: () => ({id: userId()}), 
+  loader: ({request}) => fetchData(request),
+});
+```
+
+Note: Even more modern Angular using Resource signal. (Developer preview, coming soon! Loader cannot be Observable!)
 
 ---
 
@@ -503,7 +652,7 @@ Expand with more Angular specific examples, especially in comparison with modern
 - A cold ❄️ Observable creates a new stream for each subscriber.<!-- .element: class="fragment" -->
 - A hot 🔥 Observable adds a new subscriber to the existing Observable.<!-- .element: class="fragment" -->
 
-Note: Check if the class knows the difference before explaining?
+Note: Check if the class knows the difference before explaining? Mentioned it in the examples before.
 
 ----
 
@@ -536,7 +685,11 @@ Note: 10 minutes? Depends on the rest of the exercises and how much time has pas
 
 # Recap
 
-// Todo write recap.
+- Reactive programming gives you the opportunity to write declaratively<!-- .element: class="fragment" -->
+- Easy to compose streams together to get the results you need<!-- .element: class="fragment" -->
+- Signals are an easier form of "Subjects"<!-- .element: class="fragment" -->
+- RxJS for more advanced streams, event or time based for example<!-- .element: class="fragment" -->
+- Angular world is moving when it comes to reactive patterns! Keep up!<!-- .element: class="fragment" -->
 
 ---
 
