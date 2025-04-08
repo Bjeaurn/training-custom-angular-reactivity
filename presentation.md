@@ -10,7 +10,6 @@ title: "Angular Reactivity+ (for Kadaster)"
 - Reactivity "refresh", intro into "Why reactivity"
 - Modern Signal examples
 - Comparison to RxJS "alternatives"
-- ? Discussion about simplicity, expressiveness, readability ?
 - RxJS interop
 - Angular specific examples
 
@@ -677,9 +676,9 @@ setTimeout(() => {
 
 ---
 
-# Exercises 7-8
+# Exercises 7+
 
-Note: 10 minutes? Depends on the rest of the exercises and how much time has passed?
+Note: 10 minutes? Depends on the rest of the exercises and how much time has passed? We have some bonus exercises prepared from another training. 
 
 ---
 
