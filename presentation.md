@@ -2,7 +2,8 @@
 title: "Angular Reactivity+ (for Kadaster)"
 ---
 
-# Angular Reactivity+
+# Reactivity+
+## Using Angular<!-- .element: class="fragment" -->
 
 ---
 
@@ -12,6 +13,12 @@ title: "Angular Reactivity+ (for Kadaster)"
 - Comparison to RxJS "alternatives"
 - RxJS interop
 - Angular specific examples
+
+---
+
+<img src="./repo.svg" alt="Repository QR code" style="width: 400px" />
+
+Repository
 
 ---
 
@@ -703,3 +710,9 @@ Note: 10 minutes? Depends on the rest of the exercises and how much time has pas
   <br />
   <small>bjorn.schijff@soprasteria.com</small>
 </div>
+
+---
+
+## Vervolgstappen
+
+Note: Hoe verder, eventueel geïdentificeerde pijnpunten? Zijn daar thema's of categorieën uit te halen waar we op termijn iets mee kunnen?
