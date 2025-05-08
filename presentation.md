@@ -278,8 +278,8 @@ Note: Point 3: WriteableSignal vs. ComputedSignal.
 
 * Available since v16 (experimental)<!-- .element: class="fragment" -->
 * Stable since v17<!-- .element: class="fragment" -->
-* Signal input/output since v19<!-- .element: class="fragment" -->
-* LinkedSignal since v19<!-- .element: class="fragment" -->
+* Signal input/output since v19 (stable)<!-- .element: class="fragment" -->
+* LinkedSignal since v19 (stable in 20!)<!-- .element: class="fragment" -->
 * v20 coming in May!<!-- .element: class="fragment" -->
 
 Note: What version are you on? How is upgrading going?
@@ -438,7 +438,7 @@ Note: from() is the catchall for a lot of different variables, including Promise
 ```js
 const obs = from([1, 2, 3]).pipe(
   map((x) => x * 2),
-  filter((x) => x < 4)
+  filter((x) => x <= 4)
 );
 
 obs.subscribe({
@@ -541,6 +541,8 @@ Note: We might get into this, as they compare nicely to what Signals make very e
 # Exercises
 
 Exercises 4-6
+
+2 .html files, 1 Stackblitz (.md)
 
 Note: Short break, 10-15m?
 
