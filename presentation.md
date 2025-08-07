@@ -1,5 +1,5 @@
 ---
-title: "Angular Reactivity+ (for Kadaster)"
+title: "Angular Reactivity+"
 ---
 
 # Reactivity+
