@@ -712,9 +712,3 @@ Note: 10 minutes? Depends on the rest of the exercises and how much time has pas
   <br />
   <small>bjorn.schijff@soprasteria.com</small>
 </div>
-
----
-
-## Vervolgstappen
-
-Note: Hoe verder, eventueel geïdentificeerde pijnpunten? Zijn daar thema's of categorieën uit te halen waar we op termijn iets mee kunnen?
