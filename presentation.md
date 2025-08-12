@@ -23,7 +23,7 @@ Repository
 ---
 
 <div style="">
-  <img src="./assets/bjorn.jpg" width="100" style="border-radius:100%; display: inline-flex;">
+  <img src="./assets/bjorn-talk.webp" width="100" style="border-radius:100%; display: inline-flex;">
   <h1 style="font-size: 0.9em;">Bjorn Schijff</h1>
   <small style="display: inline-flex;">Sr. Frontend Engineer / Architect</small>
   <div>
@@ -280,7 +280,7 @@ Note: Point 3: WriteableSignal vs. ComputedSignal.
 * Stable since v17<!-- .element: class="fragment" -->
 * Signal input/output since v19 (stable)<!-- .element: class="fragment" -->
 * LinkedSignal since v19 (stable in 20!)<!-- .element: class="fragment" -->
-* v20 coming in May!<!-- .element: class="fragment" -->
+* v20.2.0 coming any day!<!-- .element: class="fragment" -->
 
 Note: What version are you on? How is upgrading going?
 
