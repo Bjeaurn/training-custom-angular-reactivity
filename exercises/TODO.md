@@ -1,5 +1,3 @@
-Ja alle exercises langs, stackblitz nalopen.
-
-Omzetten naar Angular stackblitzen? Simpele voorbeelden prep, RxJS / Signal verschillen, afkijken uit RxJS 101 en Reactivity exercises. 
-
-// https://medium.com/@ziadastih12/rethinking-angular-testing-a-deep-dive-into-component-harnesses-9a91a7762167
+- [ ] Operator slides & voorbeelden dubbelop? (Filter/Map voorbeelden voor de uitleg etc.), flow kan beter
+- [ ] RxJS oefeningen hebben verkeerde nummering in hun titels
+- [ ] Compose voorbeeld, hoe RxJS (en Signals) het mogelijk maken om streams te "Composeren", denk voorbeeld einde vorige ronde.
