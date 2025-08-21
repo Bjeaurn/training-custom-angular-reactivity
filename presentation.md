@@ -165,7 +165,7 @@ class ListComponent {
 }
 ```
 
-Note: A declarative example. We write the "recipe" and every definition has its own easy to follow set of rules.
+Note: A declarative example. We write the "recipe" and every definition has its own easy to follow set of rules. This also allows for stream composability!
 
 ----
 
@@ -280,7 +280,7 @@ Note: Point 3: WriteableSignal vs. ComputedSignal.
 * Stable since v17<!-- .element: class="fragment" -->
 * Signal input/output since v19 (stable)<!-- .element: class="fragment" -->
 * LinkedSignal since v19 (stable in 20!)<!-- .element: class="fragment" -->
-* v20.2.0 coming any day!<!-- .element: class="fragment" -->
+* v20.2.0  day!<!-- .element: class="fragment" -->
 
 Note: What version are you on? How is upgrading going?
 
@@ -535,6 +535,29 @@ Note: Short break, 10-15m?
 
 ---
 
+# Composability
+
+```ts
+@Component({...})
+export class Component {
+  userId$ = this.userService.userId$.pipe(takeUntilDestroyed())
+
+  user$: Observable<User> = this.userId$.pipe(
+    switchMap((userId) => this.userService.getUserDetails(userId))
+  )
+
+  comments$: Observable<Comment[]> = this.userId$.pipe(
+    switchMap((userId) => this.postService.getCommentsByUserId(userId))
+  )
+}
+```
+
+<!-- TODO: Another Signal example?  -->
+
+Note: Talk about how we can declaratively set up streams and signals, and then have others declaratively be set up to listen to those. Giving us only a few sources of truth to build the model we need.
+
+---
+
 # Common mistakes
 
 - By André Staltz
@@ -675,10 +698,6 @@ setTimeout(() => {
 # Exercises 7+
 
 Note: 10 minutes? Depends on the rest of the exercises and how much time has passed? We have some bonus exercises prepared from another training. 
-
----
-
-# Composing streams
 
 ---
 
