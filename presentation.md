@@ -328,25 +328,13 @@ Note: If you're using RxJS just to keep track of a current state, switching that
 
 # The RxJS Contract
 
-----
-
-### Wait, what's a contract?
-
-- A set of rules agreed upon <!-- .element: class="fragment" -->
-- Using the same language throughout <!-- .element: class="fragment" -->
-- Ensures we're all using the same things for the same reasons. <!-- .element: class="fragment" -->
-
-----
-
-### So, the RxJS Contract
-
 - Observable<!-- .element: class="fragment" -->
 - Subscribers<!-- .element: class="fragment" -->
 - Subscription<!-- .element: class="fragment" -->
 - Operators<!-- .element: class="fragment" -->
 - Subject<!-- .element: class="fragment" -->
 
-Note: Check if we know all of them, ask around.
+Note: Check if we know all of them, ask around.c
 
 ----
 
@@ -428,10 +416,20 @@ subscription.unsubscribe();
   `from() of()`<br /> <!-- .element: class="fragment" -->
   `interval() EMPTY`<br /> <!-- .element: class="fragment" -->
   `merge() concat()`<br /> <!-- .element: class="fragment" -->
-  `zip()`<br /> <!-- .element: class="fragment" -->
   - and more! (On that later!)<!-- .element: class="fragment" -->
 
-Note: from() is the catchall for a lot of different variables, including Promises. fromPromise has been deprecated a while ago. Corneel en Tobias doen hier leuke analogie??
+Note: from() is the catchall for a lot of different variables, including Promises. fromPromise has been deprecated a while ago.
+
+----
+
+- Transformation like `map()`
+- Filtering like `filter()`
+- Utility like `tap()`
+- Error handling like `catchError()`
+- Combination like `merge()`
+- Flattening like `switchMap()`
+- Multicasting like `share()`
+- And plenty of combined operators, like `mergeMap()`
 
 ----
 
@@ -459,17 +457,6 @@ obs.subscribe({
 ```
 
 <!-- .element: class="fragment" -->
-
-----
-
-- Transformation like `map()`
-- Filtering like `filter()`
-- Utility like `tap()`
-- Error handling like `catchError()`
-- Combination like `merge()`
-- Flattening like `switchMap()`
-- Multicasting like `share()`
-- And plenty of combined operators, like `mergeMap()`
 
 ----
 
@@ -554,8 +541,8 @@ Note: Short break, 10-15m?
 
 ----
 
-- Using Subjects too much. Use Observable.create!<!-- .element: class="fragment" -->
-- Using Observable.create too much. Use Creation operators<!-- .element: class="fragment" -->
+- Using Subjects too much. Use Observable.create / new Observable()!<!-- .element: class="fragment" -->
+- Using Observable.create too much. Use Creation operators (of, from)<!-- .element: class="fragment" -->
 - Subscribing too much and unsubscribing too much<!-- .element: class="fragment" -->
 - Subject.next inside subscribe<!-- .element: class="fragment" -->
 - Subscribe inside subscribe<!-- .element: class="fragment" -->
@@ -688,6 +675,10 @@ setTimeout(() => {
 # Exercises 7+
 
 Note: 10 minutes? Depends on the rest of the exercises and how much time has passed? We have some bonus exercises prepared from another training. 
+
+---
+
+# Composing streams
 
 ---
 

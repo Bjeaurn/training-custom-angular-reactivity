@@ -1,10 +1,9 @@
-# Exercise 2
+# Exercise 10
 
-Fork the following Stackblitz,
-1. Make the search less aggressive on the backend
-2. Lessen the pressure on the backend for the data retrieval.
-3. Optionally build a cache for the slow data.
+We have a reactiveForm that we want to submit.
+Make sure it's all hooked up properly and sends off the results to our "backend", without hitting the backend too often.
+You can pick which solution you want to use; there's a button, `(ngSubmit)` and a possible stream to use. 
 
-https://stackblitz.com/edit/rx-exercise-2?file=src/app/app.component.ts
+https://stackblitz.com/edit/rx-exercise-3?file=src%2Fapp%2Fapp.component.ts
 
 ~10-20 minutes.

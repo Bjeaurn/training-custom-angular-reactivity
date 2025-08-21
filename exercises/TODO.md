@@ -1,3 +1,3 @@
 - [ ] Operator slides & voorbeelden dubbelop? (Filter/Map voorbeelden voor de uitleg etc.), flow kan beter
-- [ ] RxJS oefeningen hebben verkeerde nummering in hun titels
+- [X] RxJS oefeningen hebben verkeerde nummering in hun titels
 - [ ] Compose voorbeeld, hoe RxJS (en Signals) het mogelijk maken om streams te "Composeren", denk voorbeeld einde vorige ronde.
